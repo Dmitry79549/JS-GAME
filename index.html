@@ -9,52 +9,13 @@
 </head>
 
 <body>
-    <button class="button button__right">Right</button>
-    <button class="button button__left">Left</button>
-    <!-- <p id="hero">Text</p> -->
+
     <div class="hero">
 
         <img class="hero_img" src="images/hero-sprite.png" alt="hero">
     </div>
 
-    <script>
-
-        // ПЕРЕМЕННЫЕ
-        
-        let heroImg = window.document.querySelector('.hero_img');
-        let rightButton = window.document.querySelector('.button__right');
-        let leftButton = window.document.querySelector('.button__left');
-        let hero = window.document.querySelector('.hero');
-        let rightPosition = 0;
-        let heroPosition = 0;
-
-        // ФУНКЦИИ
-
-        const rightHandler = () => {
-            rightPosition += 1;
-            heroPosition += 1;
-            if (rightPosition > 5) {
-                rightPosition = 0;
-            }
-            heroImg.style.left = `-${rightPosition * 288}px`;
-            hero.style.left = `${heroPosition * 20}px`;
-        }
-
-        //ОБРАБОТЧИКИ СОБЫТИЙ
-
-        rightButton.onclick = rightHandler;
-
-        // const clickHandler = () => {
-        //     if (hero.style.backgroundColor === 'grey') {
-        //         hero.style.backgroundColor = 'blue';
-        //     } else {
-        //         hero.style.backgroundColor = 'grey';
-        //     }
-        // }
-
-        // hero.onclick = clickHandler;
-
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
