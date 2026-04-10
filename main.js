@@ -1,7 +1,21 @@
 // ПЕРЕМЕННЫЕ
 
 let heroImg = window.document.querySelector('.hero_img');
+heroImg.onclick = (Event) => {
+    Event.preventDefault();
+}
 let hero = window.document.querySelector('.hero');
+let canvas = window.document.querySelector('.canvas');
+let fsBtn = window.document.querySelector('.fsbtn');
+fsBtn.onclick = () => {
+    if (window.document.fullscreen) {
+        fsBtn.src = 'images/fullscreen.png';
+        window.document.exitFullscreen();
+    } else {
+        fsBtn.src = 'images/cancel.png';
+        canvas.requestFullscreen();
+    }
+}
 let rightPosition = 0;
 let heroPosition = 0;
 
@@ -33,7 +47,7 @@ let timer = null;
 let x = 0;
 let halfWidth = window.screen.width / 2;
 let onTouchStart = (Event) => {
-    //Event.preventDefault();
+    clearInterval(timer);
     if (Event.type === 'mousedown') {
         x = Event.screenX;
     } else {
@@ -46,7 +60,6 @@ let onTouchStart = (Event) => {
 
 }
 let onTouchEnd = (Event) => {
-    //Event.preventDefault();
     clearInterval(timer);
 }
 
