@@ -18,7 +18,7 @@ fsBtn.onclick = () => {
 }
 let rightPosition = 0;
 let heroPosition = 0;
-
+let direction = 'right';
 // ФУНКЦИИ
 
 const rightHandler = () => {
@@ -29,6 +29,7 @@ const rightHandler = () => {
         rightPosition = 0;
     }
     heroImg.style.left = `-${rightPosition * 288}px`;
+    heroImg.style.top = '-576px';
     hero.style.left = `${heroPosition * 20}px`;
 }
 const leftHandler = () => {
@@ -39,11 +40,45 @@ const leftHandler = () => {
         rightPosition = 0;
     }
     heroImg.style.left = `-${rightPosition * 288}px`;
+    heroImg.style.top = '-576px';
     hero.style.left = `${heroPosition * 20}px`;
+}
+
+const standHandler = () => {
+      
+    
+    
+
+    switch (direction) {
+        case 'right': {
+            heroImg.style.transform = "scale(-1,1)";
+            if (rightPosition > 4) {
+        rightPosition = 1;
+    }
+            break
+        }
+         case 'left': {
+            heroImg.style.transform = "scale(1,1)";
+            if (rightPosition > 3) {
+        rightPosition = 0;
+    }
+            break
+        }
+        default: break;
+    }
+    rightPosition += 1;
+    heroImg.style.left = `-${rightPosition * 288}px`;
+    heroImg.style.top = '0px';
+
 }
 
 //ОБРАБОТЧИКИ СОБЫТИЙ
 let timer = null;
+const lifeCycle = () => {
+    timer = setInterval(()=>{
+        standHandler();
+    },150);
+} 
 let x = 0;
 let halfWidth = window.screen.width / 2;
 let onTouchStart = (Event) => {
@@ -54,13 +89,22 @@ let onTouchStart = (Event) => {
         x = Event.touches[0].screenX;
     }
     timer = setInterval(() => {
-        (x > halfWidth) ? rightHandler() : leftHandler();
+        
+        if(x > halfWidth) {
+            direction = 'right';
+            rightHandler();
 
-    }, 130)
+        }else {
+            direction = 'left';
+            leftHandler();
+        }
+
+        }, 130)   
 
 }
 let onTouchEnd = (Event) => {
     clearInterval(timer);
+    lifeCycle();
 }
 
 //window.onpointerdown = onTouchStart;
@@ -70,3 +114,8 @@ window.ontouchstart = onTouchStart;
 //window.onpointerup = onTouchEnd;
 window.onmouseup = onTouchEnd;
 window.ontouchend = onTouchEnd;
+
+const start = () => {
+    lifeCycle
+}
+start();
