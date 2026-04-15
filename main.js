@@ -15,6 +15,11 @@ let hero = window.document.querySelector('.hero');
 let canvas = window.document.querySelector('.canvas');
 let fsBtn = window.document.querySelector('.fsbtn');
 
+let heroX = Number.parseInt(hero.style.left);
+let heroY = Number.parseInt(hero.style.bottom);
+
+console.log(heroX, heroY);
+
 jumpBlock.style.top = `${window.screen.height/2 - 144/2}px`;
 hitBlock.style.top = `${window.screen.height/2 - 144/2}px`;
 heroImg.onclick = (Event) => {
@@ -188,7 +193,7 @@ canvas.appendChild(tile);
 }
 
 const createTilesPlatform = (startX, startY, length) => {
-    for(let i = 0; i < length; i++){
+    for(let i = 0; i < length; i++) {
       createTile(startX + i, startY);
     } 
 }

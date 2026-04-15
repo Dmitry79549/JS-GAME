@@ -4,7 +4,7 @@
 
 .bac {
     position: absolute;
-    left: 0;
+    left: 0px;
     bottom: 64px;
     width: 100%;
 }
@@ -17,14 +17,14 @@
     right: 10px;
 }
 
-.hero {
+/* .hero {
     width: 96px;
     height: 96px;
     overflow: hidden;
     position: absolute;
     left: 0px;
     bottom: 64px;
-}
+} */
 
 .hero__img {
     width: 576px;
