@@ -41,8 +41,8 @@ const rightHandler = () => {
     if (rightPosition > 5) {
         rightPosition = 0;
     }
-    heroImg.style.left = `-${rightPosition * 288}px`;
-    heroImg.style.top = '-576px';
+    heroImg.style.left = `-${rightPosition * 96}px`;
+    heroImg.style.top = '-192px';
     hero.style.left = `${heroPosition * 20}px`;
 }
 const leftHandler = () => {
@@ -52,8 +52,8 @@ const leftHandler = () => {
     if (rightPosition > 5) {
         rightPosition = 0;
     }
-    heroImg.style.left = `-${rightPosition * 288}px`;
-    heroImg.style.top = '-576px';
+    heroImg.style.left = `-${rightPosition * 96}px`;
+    heroImg.style.top = '-192px';
     hero.style.left = `${heroPosition * 20}px`;
 }
 
@@ -76,7 +76,7 @@ const standHandler = () => {
         default: break;
     }
     rightPosition += 1;
-    heroImg.style.left = `-${rightPosition * 288}px`;
+    heroImg.style.left = `-${rightPosition * 96}px`;
     heroImg.style.top = '0px';
 }
 const hitHandler = () => {
@@ -100,8 +100,8 @@ const hitHandler = () => {
         default: break;
     }
     rightPosition += 1;
-    heroImg.style.left = `-${rightPosition * 288}px`;
-    heroImg.style.top = '-864px';
+    heroImg.style.left = `-${rightPosition * 96}px`;
+    heroImg.style.top = '-288px';
 
 }
 const jumpHandler = () => {
@@ -125,8 +125,8 @@ const jumpHandler = () => {
         default: break;
     }
     rightPosition += 1;
-    heroImg.style.left = `-${rightPosition * 288}px`;
-    heroImg.style.top = '-288px';
+    heroImg.style.left = `-${rightPosition * 96}px`;
+    heroImg.style.top = '-96px';
 
 }
 
@@ -179,7 +179,25 @@ const lifeCycle = () => {
     },150);
 } 
 
+const addTiles = (i) => {
+let tile = window.document.createElement('img');
+let tileBlack = window.document.createElement('img');
+tile.src = 'assets/1 Tiles/Tile_02.png';
+tile.style.position = 'absolute';
+tile.style.left = `${ i* 32}px`;
+tile.style.bottom = '32px';
+tileBlack.src = 'assets/1 Tiles/Tile_04.png';
+tileBlack.style.position = 'absolute';
+tileBlack.style.left = `${ i* 32}px`;
+tileBlack.style.bottom = 0;
+canvas.appendChild(tile);
+canvas.appendChild(tileBlack);
+}
+
 const start = () => {
-    lifeCycle
+    lifeCycle();
+    for(let i = 0; i < 50; i++){
+      addTiles(i);
+    }  
 }
 start();

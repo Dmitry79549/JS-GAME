@@ -2,6 +2,13 @@
     background-color: white;
 }
 
+.bac {
+    position: absolute;
+    left: 0;
+    bottom: 64px;
+    width: 100%;
+}
+
 .fsbtn {
     width: 40px;
     height: 40px;
@@ -11,19 +18,20 @@
 }
 
 .hero {
-    width: 288px;
-    height: 288px;
+    width: 96px;
+    height: 96px;
     overflow: hidden;
-    position: relative;
+    position: absolute;
     left: 0px;
+    bottom: 64px;
 }
 
 .hero__img {
-    width: 1728px;
-    height: 1152px;
+    width: 576px;
+    height: 384px;
     position: relative;
     top: 0px;
-    left: -288px;
+    left: -96px;
     transform: scale(-1, 1);
 }
 .jump-block {
