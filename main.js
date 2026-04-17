@@ -8,17 +8,14 @@ let jump = false;
 let timer = null;
 let x = 0;
 let halfWidth = window.screen.width / 2;
+let tileArray = [];
 let jumpBlock = window.document.querySelector('.jump-block');
 let hitBlock = window.document.querySelector('.hit-block');
 let heroImg = window.document.querySelector('.hero__img');
 let hero = window.document.querySelector('.hero');
 let canvas = window.document.querySelector('.canvas');
 let fsBtn = window.document.querySelector('.fsbtn');
-
-let heroX = Number.parseInt(hero.style.left);
-let heroY = Number.parseInt(hero.style.bottom);
-
-console.log(heroX, heroY);
+let info = window.document.querySelector('.info');
 
 jumpBlock.style.top = `${window.screen.height/2 - 144/2}px`;
 hitBlock.style.top = `${window.screen.height/2 - 144/2}px`;
@@ -39,6 +36,26 @@ hitBlock.onclick = () => {hit = true};
 
 // ФУНКЦИИ
 
+const updateHeroXY = () => {
+    heroX = Math.floor((Number.parseInt(hero.style.left)+32)/32);
+    heroY = Math.floor(Number.parseInt(hero.style.bottom)/32);
+
+    info.innerText = `hero = ${heroX}, heroY = ${heroY}`;
+}
+const checkFalling = () => {
+    let isFalling = true;
+    for(let i = 0; i < tileArray.length; i++) {
+        if((tileArray[i][0] === heroX) && ((tileArray[i][1]+1) === heroY)) {
+             isFalling = false;
+        }
+    }
+        if(isFalling) {
+            info.innerText = info.innerText + ', Falling';
+        } else {
+            info.innerText = info.innerText + ', Not falling';
+        }
+}
+
 const rightHandler = () => {
     heroImg.style.transform = "scale(-1,1)";
     rightPosition += 1;
@@ -49,6 +66,9 @@ const rightHandler = () => {
     heroImg.style.left = `-${rightPosition * 96}px`;
     heroImg.style.top = '-192px';
     hero.style.left = `${heroPosition * 20}px`;
+
+    updateHeroXY();
+    checkFalling ();
 }
 const leftHandler = () => {
     heroImg.style.transform = "scale(1,1)";
@@ -60,6 +80,9 @@ const leftHandler = () => {
     heroImg.style.left = `-${rightPosition * 96}px`;
     heroImg.style.top = '-192px';
     hero.style.left = `${heroPosition * 20}px`;
+
+    updateHeroXY();
+    checkFalling ();
 }
 
 const standHandler = () => { 
@@ -189,7 +212,9 @@ tile.src = 'assets/1 Tiles/Tile_02.png';
 tile.style.position = 'absolute';
 tile.style.left = `${x * 32}px`;
 tile.style.bottom = `${y * 32}px`;
-canvas.appendChild(tile);   
+canvas.appendChild(tile);
+
+tileArray.push([x, y]);
 }
 
 const createTilesPlatform = (startX, startY, length) => {
@@ -211,9 +236,13 @@ canvas.appendChild(tileBlack);
 const start = () => {
     lifeCycle();
     for(let i = 0; i < 60; i++){
+        if((i>10) && i<17) {
+            continue;
+        }
       addTiles(i);
     }
     createTilesPlatform(10, 10, 10);
     createTilesPlatform(15, 5, 10);
+
 }
 start();
